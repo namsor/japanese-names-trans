@@ -38,10 +38,24 @@ onmt_preprocess -train_src data/parallel-japanese-corpus/names-jp-train.txt -tra
 
 This will output three files in data/onmt-model : jp_en_data.train.0.pt, jp_en_data.valid.0.pt, jp_en_data.vocab.pt
 
-
 Prepare English to Japanese data :
 ```bash
 onmt_preprocess -train_src data/parallel-japanese-corpus/names-en-train.txt -train_tgt data/parallel-japanese-corpus/names-jp-train.txt -valid_src data/parallel-japanese-corpus/names-en-val.txt -valid_tgt data/parallel-japanese-corpus/names-jp-val.txt -save_data data/onmt-model/en_jp_data
 ```
 
 This will output three files in data/onmt-model : en_jp_data.train.0.pt, en_jp_data.valid.0.pt, en_jp_data.vocab.pt
+
+### ONMT train
+Train Japanese to English machine translation model :
+```bash
+onmt_train -data data/onmt-model/jp_en_data -save_model data/onmt-model/jp_en_model -world_size 1 -gpu_ranks 0
+```
+
+This will output files in data/onmt-model : jp_en_model_step_100000.pt
+
+Train English to Japanese machine translation model :
+```bash
+onmt_train -data data/onmt-model/en_jp_data -save_model data/onmt-model/en_jp_model -world_size 1 -gpu_ranks 0
+```
+
+This will output files in data/onmt-model : en_jp_model_step_100000.pt
