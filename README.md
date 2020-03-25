@@ -31,12 +31,17 @@ The names in data\parallel-japanese-corpus are represented (one line per FirstNa
 
 ## Train ONMT translation model
 ### ONMT preprocess
-Japanese to English :
+Prepare Japanese to English data :
 ```bash
 onmt_preprocess -train_src data/parallel-japanese-corpus/names-jp-train.txt -train_tgt data/parallel-japanese-corpus/names-en-train.txt -valid_src data/parallel-japanese-corpus/names-jp-val.txt -valid_tgt data/parallel-japanese-corpus/names-en-val.txt -save_data data/onmt-model/jp_en_data
 ```
 
-English to Japanese :
+This will output three files in data/onmt-model : jp_en_data.train.0.pt, jp_en_data.valid.0.pt, jp_en_data.vocab.pt
+
+
+Prepare English to Japanese data :
 ```bash
-onmt_preprocess -train_src data/parallel-japanese-corpus/names-jp-train.txt -train_tgt data/parallel-japanese-corpus/names-en-train.txt -valid_src data/parallel-japanese-corpus/names-jp-val.txt -valid_tgt data/parallel-japanese-corpus/names-en-val.txt -save_data data/onmt-model/jp_en_data
+onmt_preprocess -train_src data/parallel-japanese-corpus/names-en-train.txt -train_tgt data/parallel-japanese-corpus/names-jp-train.txt -valid_src data/parallel-japanese-corpus/names-en-val.txt -valid_tgt data/parallel-japanese-corpus/names-jp-val.txt -save_data data/onmt-model/en_jp_data
 ```
+
+This will output three files in data/onmt-model : en_jp_data.train.0.pt, en_jp_data.valid.0.pt, en_jp_data.vocab.pt
