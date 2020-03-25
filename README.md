@@ -93,7 +93,11 @@ onmt_server
 ```
 
 You can try the following GET method to check that the server is running :
-http://localhost:5000/translator/hello
+```bash
+curl -i -X GET \
+    http://localhost:5000/translator/hello
+```
+
 
 Then you can query the server with POST method
 ```bash
