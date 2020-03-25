@@ -72,10 +72,47 @@ onmt_translate -model data/onmt-model/en_jp_model_step_100000.pt -src data/paral
 ```
 
 ## Overall accuracy
-We use the test outputs to calculate the accuracy, for getting the first translation right ; the first OR the second translation right ; any of the first three candidates right :
+We use the test outputs to calculate the accuracy, for getting the first translation right ; the first OR the second translation right ; any of the first N candidates right :
 
-| Translation direction | Match 1 | Match 2 | Match 3 |
-| ------------- | ------------- | ------------- | ------------- |
-| English To Japanese  | 57%	|	70%	|	76% |
-| Japanese To English  |  87%  |  92% |   94% |
+| Translation direction | Match 1 | Match 2 | Match 3 | Match 4 | Match 5 |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| English To Japanese  | 57%	|	70%	|	76% | 79% | 82% |
+| Japanese To English  |  87%  |  92% |   94% | 96% | 97% |
+
+## Running the ONMT server
+
+Install `flask` from `pip`:
+```bash
+pip install flask
+```
+
+To run the ONMT server, copy jp_en_model_step_100000.pt and en_jp_model_step_100000.pt into directory /available_models/
+then run :
+```bash
+onmt_server 
+```
+
+You can try the following GET method to check that the server is running :
+http://localhost:5000/translator/hello
+
+Then you can query the server with POST method
+```bash
+curl -i -X POST -H "Content-Type: application/json" \
+    -d '[{"src": "^ln f u n a k o s h i $", "id": 100}]' \
+    http://localhost:5000/translator/translate
+```
+which should return 
+```json
+{
+  "model_id": 100,
+  "result": "^ln 船 越 $",
+  "status": "ok",
+  "time": {
+    "total": 8.510261535644531,
+    "translation": 8.509992599487305,
+    "writing_src": 0.0002689361572265625
+  }
+}
+```
+
 
