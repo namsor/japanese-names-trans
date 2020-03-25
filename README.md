@@ -95,7 +95,13 @@ onmt_server
 You can try the following GET method to check that the server is running :
 ```bash
 curl -i -X GET \
-    http://localhost:5000/translator/hello
+    http://localhost:5000/translator/health
+```
+which should return 
+```json
+{
+  "status": "ok"
+}
 ```
 
 Use model ID=100 for translating to English and ID=101 to translate to Japanese. Models are configured in /available_models/conf.json
@@ -108,16 +114,16 @@ curl -i -X POST -H "Content-Type: application/json" \
 ```
 which should return 
 ```json
-{
-  "model_id": 100,
-  "result": "^ln 船 越 $",
-  "status": "ok",
-  "time": {
-    "total": 8.510261535644531,
-    "translation": 8.509992599487305,
-    "writing_src": 0.0002689361572265625
-  }
-}
+[
+  [
+    {
+      "n_best": 1,
+      "pred_score": -0.23048973083496094,
+      "src": "^ln f u n a k o s h i $",
+      "tgt": "^ln 船 越 $"
+    }
+  ]
+]
 ```
 
 
