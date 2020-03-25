@@ -30,7 +30,7 @@ The names in data\parallel-japanese-corpus are represented (one line per FirstNa
 ```
 
 ## Train ONMT translation model
-### ONMT preprocess
+### ONMT preprocess data
 Prepare Japanese to English data :
 ```bash
 onmt_preprocess -train_src data/parallel-japanese-corpus/names-jp-train.txt -train_tgt data/parallel-japanese-corpus/names-en-train.txt -valid_src data/parallel-japanese-corpus/names-jp-val.txt -valid_tgt data/parallel-japanese-corpus/names-en-val.txt -save_data data/onmt-model/jp_en_data
@@ -45,7 +45,7 @@ onmt_preprocess -train_src data/parallel-japanese-corpus/names-en-train.txt -tra
 
 This will output three files in data/onmt-model : en_jp_data.train.0.pt, en_jp_data.valid.0.pt, en_jp_data.vocab.pt
 
-### ONMT train
+### ONMT train model
 Train Japanese to English machine translation model :
 ```bash
 onmt_train -data data/onmt-model/jp_en_data -save_model data/onmt-model/jp_en_model -world_size 1 -gpu_ranks 0
@@ -59,3 +59,23 @@ onmt_train -data data/onmt-model/en_jp_data -save_model data/onmt-model/en_jp_mo
 ```
 
 This will output files in data/onmt-model : en_jp_model_step_100000.pt
+
+### ONMT test model
+Test Japanese to English machine translation model, with top-4 candidates outputs :
+```bash
+onmt_translate -model data/onmt-model/jp_en_model_step_100000.pt -src data/parallel-japanese-corpus/names-jp-test.txt -output data/test/names-en-test-out.txt -replace_unk -n_best 3
+```
+
+Test English to Japanese machine translation model, with top-4 candidates outputs :
+```bash
+onmt_translate -model data/onmt-model/en_jp_model_step_100000.pt -src data/parallel-japanese-corpus/names-en-test.txt -output data/test/names-jp-test-out.txt -replace_unk -n_best 3
+```
+
+## Overall accuracy
+We use the test outputs to calculate the accuracy, for getting the first translation right ; the first OR the second translation right ; any of the first three candidates right :
+
+| Translation direction | Match 1 | Match 2 | Match 3 |
+| ------------- | ------------- | ------------- | ------------- |
+| English To Japanese  | 57%	|	70%	|	76% |
+| Japanese To English  |  87%  |  92% |   94% |
+
