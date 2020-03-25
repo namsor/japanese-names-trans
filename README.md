@@ -98,8 +98,9 @@ curl -i -X GET \
     http://localhost:5000/translator/hello
 ```
 
+Use model ID=100 for translating to English and ID=101 to translate to Japanese. Models are configured in /available_models/conf.json
 
-Then you can query the server with POST method
+You can query the server to translate using this POST method
 ```bash
 curl -i -X POST -H "Content-Type: application/json" \
     -d '[{"src": "^ln f u n a k o s h i $", "id": 100}]' \
