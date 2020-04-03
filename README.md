@@ -117,10 +117,42 @@ which should return
 [
   [
     {
-      "n_best": 1,
+      "n_best": 5,
       "pred_score": -0.23048973083496094,
       "src": "^ln f u n a k o s h i $",
       "tgt": "^ln 船 越 $"
+    }
+  ],
+  [
+    {
+      "n_best": 5,
+      "pred_score": -1.6027336120605469,
+      "src": "^ln f u n a k o s h i $",
+      "tgt": "^ln 舩 越 $"
+    }
+  ],
+  [
+    {
+      "n_best": 5,
+      "pred_score": -5.745663642883301,
+      "src": "^ln f u n a k o s h i $",
+      "tgt": "^ln 舟 越 $"
+    }
+  ],
+  [
+    {
+      "n_best": 5,
+      "pred_score": -8.610189437866211,
+      "src": "^ln f u n a k o s h i $",
+      "tgt": "^ln 二 越 $"
+    }
+  ],
+  [
+    {
+      "n_best": 5,
+      "pred_score": -8.685261726379395,
+      "src": "^ln f u n a k o s h i $",
+      "tgt": "^ln 布 越 $"
     }
   ]
 ]
