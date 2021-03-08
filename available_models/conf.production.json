@@ -1,0 +1,27 @@
+{
+    "models_root": "available_models",
+    "models": [
+        {
+            "id": 100,
+            "model": "en_jp_model_step_100000.pt",
+            "timeout": 600,
+            "on_timeout": "to_cpu",
+            "load": true,
+            "opt": {
+                "beam_size": 5,
+                "n_best": 5
+            }
+        },
+                {
+            "id": 101,
+            "model": "jp_en_model_step_100000.pt",
+            "timeout": 600,
+            "on_timeout": "to_cpu",
+            "load": true,
+            "opt": {
+                "beam_size": 5,
+                "n_best": 5
+            }
+        }
+    ]
+}
