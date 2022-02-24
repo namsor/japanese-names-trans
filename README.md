@@ -5,6 +5,7 @@ This software uses [PyTorch](https://github.com/pytorch/pytorch)
 port of [OpenNMT](https://github.com/OpenNMT/OpenNMT),
 an open-source (MIT) neural machine translation system.
 
+It is also available as a free online service (up to 500 translations per month) from [Japanese-name.app](https://japanese-name.app) or from [NamSor API](https://namsor.app).
 
 ## Requirements
 
